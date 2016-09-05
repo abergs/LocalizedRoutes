@@ -86,7 +86,7 @@ namespace LocalizedRoutes
 
         private bool IsDirtyRoute(string name)
         {
-            return name.StartsWith("<", StringComparison.Ordinal);
+            return _tokenReplacer.IsTokenized(name);
         }
     }
 }
