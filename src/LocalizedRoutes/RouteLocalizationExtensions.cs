@@ -8,12 +8,12 @@ namespace LocalizedRoutes
         public static void AddLocalizedRoutes(this MvcOptions options,
             Dictionary<string, LocalizedRouteInformation> localizedRoutes)
         {
-            var conf = new ConventionConfiguraiton(new DictionaryAccessor(localizedRoutes));
+            var conf = new ConventionConfiguration(new DictionaryAccessor(localizedRoutes));
             options.Conventions.Insert(0, new LocalizedRouteConvention(conf));
         }
 
         public static void AddLocalizedRoutes(this MvcOptions options,
-            ConventionConfiguraiton config)
+            ConventionConfiguration config)
         {
             options.Conventions.Insert(0, new LocalizedRouteConvention(config));
         }

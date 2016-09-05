@@ -1,8 +1,8 @@
 ﻿namespace LocalizedRoutes
 {
-    public class ConventionConfiguraiton
+    public class ConventionConfiguration
     {
-        public ConventionConfiguraiton(IRouteLocalizationsAccessor localizationsAccessor)
+        public ConventionConfiguration(IRouteLocalizationsAccessor localizationsAccessor)
         {
             LocalizationsAccessor = localizationsAccessor;
         }
