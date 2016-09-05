@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B313466D-D798-482F-BD16-BD8A88A454CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32F37879-37E5-4068-BA03-D636D14DDC36}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LocalizedRoutes", "src\LocalizedRoutes\LocalizedRoutes.xproj", "{05CADC82-A6AB-4306-96F6-602480B272F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05CADC82-A6AB-4306-96F6-602480B272F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05CADC82-A6AB-4306-96F6-602480B272F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05CADC82-A6AB-4306-96F6-602480B272F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05CADC82-A6AB-4306-96F6-602480B272F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05CADC82-A6AB-4306-96F6-602480B272F6} = {B313466D-D798-482F-BD16-BD8A88A454CC}
+	EndGlobalSection
+EndGlobal
