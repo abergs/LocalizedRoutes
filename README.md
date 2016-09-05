@@ -22,6 +22,13 @@ You can store your translations however you want, for example in a dictionary or
 
 `{"how-it-works":"hur-det-fungerar"}`
 
+Add it to your Mvc service in `Startup.cs`.
+```
+// Get your translations however you want by implementing IRouteLocalizationsAccessor
+var routeLocalizer = new JsonRoutesLocalizer(Configuration["Culture"], Configuration["Theme"]);
+var routes = routeLocalizer.GetLocalizations();
+services.AddMvc(o => o.AddLocalizedRoutes(routes))
+```
 ### Supports advanced patterns without having to write your template pattern in your translations
 
 You can write advanced routes and just store what you want to translate by using `<token>`.
@@ -34,6 +41,10 @@ Swedish:
 Translation file: `{"<how>":"<konto>,<detaljer>"}`
 
 Will render a route of: `konto/{id:int}/detaljer`.
+
+### Advanced customization
+
+You can replace a lot of the functionality by changing the configuration and creating your own `IRouteTokenReplacer` and `IRouteLocalizationsAccessor`.
 
 ## Purpose
 
