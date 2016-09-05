@@ -3,6 +3,8 @@ ASP.NET Core 1.0 Library and nuget package to translate routes
 
 Based of [Strathweb blog post](http://www.strathweb.com/2015/11/localized-routes-with-asp-net-5-and-mvc-6/) but repurposed and compatible with ASP.NET Core 1.0 RTM.
 
+If you want to see the meat of the implementation, it's here [LocalizedRouteConvetion](https://github.com/abergs/LocalizedRoutes/blob/master/src/LocalizedRoutes/LocalizedRouteConvention.cs)
+
 ## Install
 `Install-Package LocalizedRoutes`
 
