@@ -44,7 +44,11 @@ Will render a route of: `konto/{id:int}/detaljer`.
 
 ### Advanced customization
 
-You can replace a lot of the functionality by changing the configuration and creating your own `IRouteTokenReplacer` and `IRouteLocalizationsAccessor`.
+You can replace a lot of the functionality by changing the configuration and creating your own implementaions of Interfaces:
+
+* `IRouteTokenReplacer` - Create your own token pattern, if you dont want to use the `<token>` and `<token>,<token>` pattern.
+* `IRouteLocalizationsAccessor`- Store your translation in any way you want, I use a JsonFile, but you could use a Dictionary, .ini-file or whatever.
+
 
 ## Purpose
 
