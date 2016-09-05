@@ -11,7 +11,7 @@ namespace LocalizedRoutes
         private readonly IRouteTokenReplacer _tokenReplacer;
 
 
-        public LocalizedRouteConvention(ConventionConfiguraiton options)
+        public LocalizedRouteConvention(ConventionConfiguration options)
         {
             _localizedRoutes = options.LocalizationsAccessor.GetLocalizations();
             _tokenReplacer = options.TokenReplacer;
@@ -20,34 +20,41 @@ namespace LocalizedRoutes
         public void Apply(ApplicationModel application)
         {
             foreach (var controller in application.Controllers)
+            {
+                SetSelectors(controller.Attributes, controller.Selectors);
                 foreach (var action in controller.Actions)
                 {
-                    // find localization attributes
-                    var localizedRouteAttributes = action.Attributes.OfType<LocalizedRouteAttribute>().ToArray();
-                    // skip to next if this is not a localized route
-                    if (!localizedRouteAttributes.Any()) continue;
-
-                    foreach (var localizedRouteAttribute in localizedRouteAttributes)
-                    {
-                        // process the name of the route and the route template
-                        var pr = ProcessRoute(localizedRouteAttribute.Name, localizedRouteAttribute.Template);
-
-                        // update the selectors that match the one we configured
-                        var matchedSelectors =
-                            action.Selectors.Where(s => s.AttributeRouteModel.Name == localizedRouteAttribute.Name)
-                                .ToList();
-
-                        foreach (var selectorModel in matchedSelectors)
-                            selectorModel.AttributeRouteModel = pr;
-
-                        // this is left over from strathweb, keep it for reference for how to implement more cultures
-                        //newAction.Properties["culture"] = new CultureInfo(((LocalizedRouteAttribute)localizedVersion.Attribute).Culture ?? "en-Ca");
-                        //newAction.Filters.Add(new LocalizedRouteFilter());
-                        //newActions.Add(newAction);*/
-                    }
+                    SetSelectors(action.Attributes, action.Selectors);
                 }
+            }
         }
 
+        private void SetSelectors(IReadOnlyList<object> attributes, IList<SelectorModel> selectors)
+        {
+            // find localization attributes
+            var localizedRouteAttributes = attributes.OfType<LocalizedRouteAttribute>().ToArray();
+            // skip to next if this is not a localized route
+            if (!localizedRouteAttributes.Any()) return;
+
+            foreach (var localizedRouteAttribute in localizedRouteAttributes)
+            {
+                // process the name of the route and the route template
+                var pr = ProcessRoute(localizedRouteAttribute.Name, localizedRouteAttribute.Template);
+
+                // update the selectors that match the one we configured
+                var matchedSelectors =
+                    selectors.Where(s => s.AttributeRouteModel.Name == localizedRouteAttribute.Name)
+                        .ToList();
+
+                foreach (var selectorModel in matchedSelectors)
+                    selectorModel.AttributeRouteModel = pr;
+
+                // this is left over from strathweb, keep it for reference for how to implement more cultures
+                //newAction.Properties["culture"] = new CultureInfo(((LocalizedRouteAttribute)localizedVersion.Attribute).Culture ?? "en-Ca");
+                //newAction.Filters.Add(new LocalizedRouteFilter());
+                //newActions.Add(newAction);*/
+            }
+        }
 
         private AttributeRouteModel ProcessRoute(string name, string template)
         {
