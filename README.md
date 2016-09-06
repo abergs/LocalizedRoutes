@@ -1,5 +1,7 @@
-# LocalizedRoutes
-ASP.NET Core 1.0 Library and nuget package to translate routes
+<h1>
+<img src="https://cloud.githubusercontent.com/assets/357283/18270877/7cd6e86a-742f-11e6-9dcc-520d893521de.png" height=60 />
+LocalizedRoutes</h1>
+ASP.NET Core 1.0 Library and nuget package to translate and replace tokens in routes.
 
 Based of [Strathweb blog post](http://www.strathweb.com/2015/11/localized-routes-with-asp-net-5-and-mvc-6/) but repurposed and compatible with ASP.NET Core 1.0 RTM.
 
@@ -22,7 +24,7 @@ public IActionResult Index() { ... }
 
 You can store your translations however you want, for example in a dictionary or in a json file (you have to write the provider, look at the example:
 
-`{"how-it-works":"hur-det-fungerar"}`
+`{"how":"hur-det-fungerar"}`
 
 Add it to your Mvc service in `Startup.cs`.
 ```
@@ -31,6 +33,14 @@ var routeLocalizer = new JsonRoutesLocalizer(Configuration["Culture"], Configura
 var routes = routeLocalizer.GetLocalizations();
 services.AddMvc(o => o.AddLocalizedRoutes(routes))
 ```
+
+Your route would then be translated to: *hur-det-fungerar*, as if you had instrumented your action like so:
+
+```
+[Route("hur-det-fungerar")]
+public IActionResult Index() { ... }
+```
+
 ### Supports advanced patterns without having to write your template pattern in your translations
 
 You can write advanced routes and just store what you want to translate by using `<token>`.
