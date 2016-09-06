@@ -11,7 +11,7 @@ If you want to see the meat of the implementation, it's here [LocalizedRouteConv
 `Install-Package LocalizedRoutes`
 
 or add to `project.json` under dependencies:
-`"LocalizedRoutes":"1.0.0"`
+`"LocalizedRoutes":"1.0.3"`
 
 ## Examples & How to use it
 
