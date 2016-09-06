@@ -29,7 +29,7 @@ You can store your translations however you want, for example in a dictionary or
 Add it to your Mvc service in `Startup.cs`.
 ```
 // Get your translations however you want by implementing IRouteLocalizationsAccessor
-var routeLocalizer = new JsonRoutesLocalizer(Configuration["Culture"], Configuration["Theme"]);
+var routeLocalizer = new MyJsonRoutesLocalizer(Configuration["Culture"], Configuration["Theme"]);
 var routes = routeLocalizer.GetLocalizations();
 services.AddMvc(o => o.AddLocalizedRoutes(routes))
 ```
